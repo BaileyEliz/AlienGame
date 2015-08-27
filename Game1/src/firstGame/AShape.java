@@ -12,6 +12,8 @@ import javafx.scene.shape.Shape;
 
 public class AShape {
 	
+	//moved files and imported into Eclipse
+	
 	private Shape _node;
 	
 	/** Animation for the node */
