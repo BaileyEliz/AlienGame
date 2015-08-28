@@ -1,7 +1,7 @@
 ALIEN ATTACK
 
-A Non-scrolling Shooter.
+A Non-scrolling Central Shooter.
 
-Planet earth is under attack by an extraterrestrial species; use the arrow keys to rotate the angle of the shooter and the space bar to shoot the aliens closing in before it's too late.
+Planet earth is under attack by an extraterrestrial species; use the mouse to aim the angle of the shooter and the space bar to shoot the aliens closing in before it's too late!
 
-Stay alive during the first attack to face the mothership in the second round, which must be shot many times to be defeated!
+Stay alive during the first attack to face the mothership in the second round, which must be shot many times to be defeated.

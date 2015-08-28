@@ -10,7 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Shape;
 
-public class AShape {
+public abstract class AShape {
 	
 	//moved files and imported into Eclipse
 	
@@ -35,7 +35,7 @@ public class AShape {
     	
     }
     
-    public Node getNode(){
+    public Shape getNode(){
     	return _node;
     }
 
