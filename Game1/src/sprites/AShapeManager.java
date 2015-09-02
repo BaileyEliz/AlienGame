@@ -1,4 +1,4 @@
-package firstGame;
+package sprites;
 
 public class AShapeManager {
 

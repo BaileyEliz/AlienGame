@@ -1,4 +1,4 @@
-package firstGame;
+package loop;
 
 public class MouseCoords {
 	

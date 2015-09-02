@@ -1,11 +1,13 @@
-package firstGame;
+package loop;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
 
 public class GameLoop extends Application {
 	
-	Base _gameWorld = new ShapesGoneWild(60, "Your Game");
+	public final int FRAMES_PER_SECOND = 60;
+	
+	private AlienWorld _game = new AlienWorld(FRAMES_PER_SECOND, "Alien Attack");
 	
 	public static void main(String[] args) {
         launch(args);
@@ -13,11 +15,12 @@ public class GameLoop extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		 // setup title, scene, stats, controls, and actors.
-        _gameWorld.initialize(primaryStage);
+		
+		 // create the level manager
+        _game.initialize(primaryStage);
 
         // kick off the game loop
-        _gameWorld.beginGameLoop();
+        _game.beginGameLoop();
 
         // display window
         primaryStage.show();
