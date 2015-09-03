@@ -1,4 +1,4 @@
-package sprites;
+package loop;
 
 import java.util.ArrayList;
 

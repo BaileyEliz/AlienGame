@@ -1,21 +1,20 @@
-package sprites;
-
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Shape;
+package loop;
 
 public class Boss extends Sprite{
+	
+	public final int BOSS_WIDTH = 150;
+	public final int BOSS_HEIGHT = 70;
+	public final String BOSS_IMAGE = "Images/mothership.png";
 	
 	private int timesHit;
 	private boolean _bossAlive;
 	
 	public Boss(double x, double y) {
-		setWidth(150);
-		setHeight(70);
+		setWidth(BOSS_WIDTH);
+		setHeight(BOSS_HEIGHT);
 		setX(x);
 		setY(y);
-		setFileName("Images/mothership.png");
+		setFileName(BOSS_IMAGE);
 		initializeImage();
 		_bossAlive = true;
 	}

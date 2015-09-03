@@ -10,6 +10,8 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public abstract class Base {
+	
+	public final int MILLISECONDS_IN_SECOND = 1000;
 
 	private Timeline _gameLoop;
 	private int _framesPerSecond;
@@ -23,7 +25,7 @@ public abstract class Base {
 
 	protected final void buildAndSetGameLoop() {
 
-		final Duration oneFrameAmt = Duration.millis(1000/_framesPerSecond);
+		final Duration oneFrameAmt = Duration.millis(MILLISECONDS_IN_SECOND/_framesPerSecond);
 		final KeyFrame oneFrame = new KeyFrame(oneFrameAmt,
 				new EventHandler<ActionEvent>() {
 

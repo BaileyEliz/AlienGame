@@ -1,21 +1,25 @@
-package levels;
+package loop;
+
+import java.util.Random;
 
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import loop.MouseCoords;
-import sprites.Alien;
-import sprites.AlienManager;
-import sprites.Earth;
-import sprites.Shot;
-import sprites.ShotManager;
 
 public abstract class Mode extends Level {
-	
+
 	public final int MONITOR_HEIGHT = 30;
 	public final int COUNT_STARTER = 61;
+
+	public final int OFF_SCREEN_OFFSET = 100;
+
+	public final int RANDOM_OFFSCREEN = 1;
+	public final int RANDOM_ONSCREEN = 2;
+	
+	public final int NUMBER_OF_EXPLOSIONS = 8;
+	public final int EARTH_EXPLOSION_INDICATOR = 1;
 
 	private Alien _alien;
 	private Earth _earth;
@@ -32,6 +36,8 @@ public abstract class Mode extends Level {
 	private ShotManager _shotsManager;
 
 	private Rectangle _earthMonitor;
+	
+	private boolean _slowMo = false;
 
 	@Override
 	public Scene initialize() {
@@ -83,17 +89,88 @@ public abstract class Mode extends Level {
 			getRoot().getChildren().add(b.getImageView());
 		}
 		else if(e.getCode().getName().equals("W")){
-			for(int i = 0; i < 5; i++){
-				Shot b = new Shot(_earth.getX(), _earth.getY(), i, getScene());
+			for(int i = 0; i < NUMBER_OF_EXPLOSIONS; i++){
+				Shot b = new Shot(_earth.getX(), _earth.getY(), i, getScene(), EARTH_EXPLOSION_INDICATOR);
 				_shotsManager.addShot(b);
-				System.out.println(i);
 				getRoot().getChildren().add(b.getImageView());
 			}
+		}
+		else if(e.getCode().getName().equals("S")){
+			_slowMo = !_slowMo;
 		}
 	}
 
 	public void mouseCoords(MouseEvent e){
 		_mouse.setCoords(e.getSceneX(), e.getSceneY());
+	}
+
+	public int[] getRandomXY(int identity){
+
+		if(identity == RANDOM_OFFSCREEN){
+
+			Random rand = new Random();
+			int randomNumberOne = rand.nextInt(400);
+			int randomNumberTwo = rand.nextInt(400);
+			int whichNum = rand.nextInt(2);
+			int minOrMax = rand.nextInt(2);
+
+			if(whichNum == 1){
+				if(minOrMax == 1){
+					randomNumberOne = - OFF_SCREEN_OFFSET;
+				}
+				else{
+					randomNumberOne = ((int) getScene().getWidth()) + OFF_SCREEN_OFFSET ;
+					//randomNumberOne = 700;
+				}
+			}
+			else{
+				if(minOrMax == 1){
+					randomNumberTwo = - OFF_SCREEN_OFFSET;
+				}
+				else{
+					randomNumberTwo = ((int) getScene().getWidth()) + OFF_SCREEN_OFFSET ;
+					//randomNumberTwo = 700;
+				}
+			}
+
+			int[] randomNums = {randomNumberOne, randomNumberTwo};
+			return randomNums;
+		}
+		else if(identity == RANDOM_ONSCREEN){
+
+			Random rand = new Random();
+
+			int smallX = rand.nextInt(180);
+			int smallY = rand.nextInt(180);
+			int bigX = (420 + rand.nextInt((int) getScene().getWidth() - 420));
+			int bigY = (420 + rand.nextInt((int) getScene().getWidth() - 420));
+			int bigOrSmallX = rand.nextInt(2);
+			int bigOrSmallY = rand.nextInt(2);
+
+			int randomNumberOne;
+			int randomNumberTwo;
+
+			if(bigOrSmallX == 0){
+				randomNumberOne = smallX;
+			}
+			else{
+				randomNumberOne = bigX;
+			}
+
+			if(bigOrSmallY == 0){
+				randomNumberTwo = smallY;
+			}
+			else{
+				randomNumberTwo = bigY;
+			}
+
+			int[] randomNumbers = {randomNumberOne, randomNumberTwo};
+			return randomNumbers;
+
+		}
+		else{
+			return null;
+		}
 	}
 
 	@Override
@@ -108,7 +185,6 @@ public abstract class Mode extends Level {
 				//check if the alien has hit the earth
 				if(!_alienManager.getAlien(j).getHasHitEarth()){
 					if(_earth.getImageView().getBoundsInParent().intersects(_alienManager.getAlien(j).getImageView().getBoundsInParent())){
-						//System.out.println(_earth.getImageView().getBoundsInParent().getMinX() + " " + _alienManager.getAlien(j).getImageView().getBoundsInParent().getMinX());
 						_alienManager.getAlien(j).setHasHitEarth(true);
 						getRoot().getChildren().remove(_alienManager.removeAlien(j).getImageView());
 						_aliensGone++;
@@ -120,7 +196,6 @@ public abstract class Mode extends Level {
 
 				//check if a shot has hit an alien
 				for(int i = 0; i < _shotsManager.getSize(); i++){
-					//System.out.println(_shotsManager.getShot(i).getImageView().getBoundsInParent().getMinX() + " " + _alienManager.getAlien(j).getImageView().getBoundsInParent().getMinX());
 					if(_alienManager.getAlien(j).getImageView().getBoundsInParent().intersects(_shotsManager.getShot(i).getImageView().getBoundsInParent())){
 						getRoot().getChildren().remove(_alienManager.removeAlien(j).getImageView());
 						_aliensGone++;
@@ -156,7 +231,7 @@ public abstract class Mode extends Level {
 	public void setUpdateCount(int updateCount) {
 		_updateCount = updateCount;
 	}
-	
+
 	public void addUpdateCount(){
 		_updateCount++;
 	}
@@ -188,7 +263,7 @@ public abstract class Mode extends Level {
 	public int getAliensLaunched() {
 		return _aliensLaunched;
 	}
-	
+
 	public void addAliensLaunched(){
 		_aliensLaunched++;
 	}
@@ -227,6 +302,14 @@ public abstract class Mode extends Level {
 
 	public void setShotsManager(ShotManager shotsManager) {
 		_shotsManager = shotsManager;
+	}
+	
+	public boolean getSlowMo() {
+		return _slowMo;
+	}
+
+	public void setSlowMo(boolean slowMo) {
+		_slowMo = slowMo;
 	}
 
 }

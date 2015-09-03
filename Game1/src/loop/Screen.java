@@ -1,4 +1,4 @@
-package levels;
+package loop;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -11,9 +11,12 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
-import loop.AlienWorld;
 
 public class Screen extends Level {
+	
+	public final String TYPEFACE_NAME = "assets/Fonts/SpecialElite.ttf";
+	public final int FONT_SIZE = 25;
+	public final int MARGIN_INSET = 60;
 	
 	private String _text;
 	
@@ -33,7 +36,7 @@ public class Screen extends Level {
 		splashText.setFill(Color.GREENYELLOW);
 
 		try {
-			Font mFont = Font.loadFont(new FileInputStream(AlienWorld.typefaceName), 25);
+			Font mFont = Font.loadFont(new FileInputStream(TYPEFACE_NAME), FONT_SIZE);
 			splashText.setFont(mFont);
 		} catch (IOException e1) {
 			e1.printStackTrace();
@@ -41,7 +44,7 @@ public class Screen extends Level {
 
 		BorderPane _splashLayout = new BorderPane();
 		BorderPane.setAlignment(splashText, Pos.CENTER);
-		BorderPane.setMargin(splashText, new Insets(60, 60, 60, 60));
+		BorderPane.setMargin(splashText, new Insets(MARGIN_INSET, MARGIN_INSET, MARGIN_INSET, MARGIN_INSET));
 		_splashLayout.setCenter(splashText);
 		
 		getRoot().getChildren().add(_splashLayout);

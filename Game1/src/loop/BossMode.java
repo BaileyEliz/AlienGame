@@ -1,13 +1,14 @@
-package levels;
+package loop;
 
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import sprites.Alien;
-import sprites.Boss;
 
 public class BossMode extends StarMode {
 
+	public final double BOSS_LIVES = 9;
+	public final int BOSS_MOVE_RATE = 30;
+	
 	private int oldRandomNumberOne;
 	private int oldRandomNumberTwo;
 
@@ -33,11 +34,11 @@ public class BossMode extends StarMode {
 	@Override
 	public void updateShapes() {
 
-		if(getUpdateCount() > 30){
+		if(getUpdateCount() > BOSS_MOVE_RATE){
 
 			if(_boss.getBossAlive()){
 
-				int[] randomNumbers = getInnerRandomXY();
+				int[] randomNumbers = getRandomXY(RANDOM_ONSCREEN);
 
 				_boss.getBoss().getImageView().setTranslateX(randomNumbers[0]);
 				_boss.getBoss().getImageView().setTranslateY(randomNumbers[1]);
@@ -57,7 +58,7 @@ public class BossMode extends StarMode {
 			addUpdateCount();
 		}	
 		
-		if(getStarCounter() > 120){
+		if(getStarCounter() > STAR_CREATION_RATE){
 			setStarCounter(0);
 			makeStars();
 		}
@@ -76,8 +77,8 @@ public class BossMode extends StarMode {
 			for(int i = 0; i < getShotsManager().getSize(); i++){
 				if(_boss.getBoss().getImageView().getBoundsInParent().intersects(getShotsManager().getShot(i).getImageView().getBoundsInParent())){
 					_boss.getBoss().addHit();
-					_monitor.setWidth(((9 - _boss.getHits())/9.0) * getScene().getWidth());
-					if(_boss.getBoss().getHits() > 8){
+					_monitor.setWidth(((BOSS_LIVES - _boss.getHits())/BOSS_LIVES) * getScene().getWidth());
+					if(_boss.getBoss().getHits() == BOSS_LIVES){
 						getRoot().getChildren().remove(_boss.getBoss().getImageView());
 						_boss.setBossAlive(false);
 					}
@@ -90,7 +91,7 @@ public class BossMode extends StarMode {
 
 	public void makeAlienChild(int x, int y){
 
-		setAlien(new Alien(x, y));
+		setAlien(new Alien(x, y, getSlowMo()));
 
 		getAlienManager().addAlien(getAlien());
 
@@ -108,7 +109,7 @@ public class BossMode extends StarMode {
 	}
 	
 	public void makeBossLifeMonitor(){
-		_monitor = new Rectangle(0, (getScene().getHeight() - 30), getScene().getWidth(), 30);
+		_monitor = new Rectangle(0, (getScene().getHeight() - MONITOR_HEIGHT), getScene().getWidth(), MONITOR_HEIGHT);
 		_monitor.setFill(Color.RED);
 		getRoot().getChildren().add(_monitor);
 	}

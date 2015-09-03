@@ -3,26 +3,19 @@ package loop;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
-import levels.AlienMode;
-import levels.BossMode;
-import levels.Level;
-import levels.StarMode;
-import screens.BossScreen;
-import screens.EndScreen;
-import screens.LostScreen;
-import screens.SplashScreen;
-import screens.StarScreen;
 
 public class AlienWorld extends Base {
-
-	public static final String typefaceName = "assets/Fonts/SpecialElite.ttf";
+	
+	public static final String GAME_TITLE = "Alien Attack";
+	public static final int FRAMES_PER_SECOND = 60;
+	public final int ALIEN_GOAL = 30;
 
 	private Stage _primaryStage;
 	private Level _activeLevel;
 	private Scene _activeScene;
 
 	public AlienWorld(){
-		super(60, "Alien Attack");
+		super(FRAMES_PER_SECOND, GAME_TITLE);
 	}
 
 	public AlienWorld(int fps, String title) {
@@ -52,7 +45,7 @@ public class AlienWorld extends Base {
 			}
 		}
 		else if(_activeLevel instanceof StarMode){
-			if(((StarMode) _activeLevel).getAliensGone() == 30){
+			if(((StarMode) _activeLevel).getAliensGone() == ALIEN_GOAL){
 				preBossLevel();
 			}
 			else if(((StarMode) _activeLevel).getEarth().isAlive() == false){
@@ -60,7 +53,7 @@ public class AlienWorld extends Base {
 			}
 		}
 		else if(_activeLevel instanceof AlienMode){
-			if(((AlienMode) _activeLevel).getAliensGone() == 30){
+			if(((AlienMode) _activeLevel).getAliensGone() == ALIEN_GOAL){
 				nextLevel();
 			}
 			else if(((AlienMode) _activeLevel).getEarth().isAlive() == false){

@@ -1,6 +1,4 @@
-package screens;
-
-import levels.Screen;
+package loop;
 
 public class StarScreen extends Screen {
 	

@@ -1,6 +1,4 @@
-package screens;
-
-import levels.Screen;
+package loop;
 
 public class SplashScreen extends Screen {
 

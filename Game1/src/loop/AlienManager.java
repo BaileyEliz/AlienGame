@@ -1,37 +1,37 @@
-package sprites;
+package loop;
 
 import java.util.ArrayList;
 
 public class AlienManager {
 	
-	private ArrayList<Alien> ACTIVE_ALIENS;
+	private ArrayList<Alien> _activeAliens;
 	
 	public AlienManager(){
-		ACTIVE_ALIENS = new ArrayList<Alien>();
+		_activeAliens = new ArrayList<Alien>();
 	}
 	
 	public void setAliens(ArrayList<Alien> aliens){
-		ACTIVE_ALIENS = aliens;
+		_activeAliens = aliens;
 	}
 	
 	public ArrayList<Alien> getAliens(){
-		return ACTIVE_ALIENS;
+		return _activeAliens;
 	}
 	
 	public Alien getAlien(int index){
-		return ACTIVE_ALIENS.get(index);
+		return _activeAliens.get(index);
 	}
 	
 	public void addAlien(Alien alien){
-		ACTIVE_ALIENS.add(alien);
+		_activeAliens.add(alien);
 	}
 	
 	public Alien removeAlien(int index){
-		return ACTIVE_ALIENS.remove(index);
+		return _activeAliens.remove(index);
 	}
 	
 	public int getSize(){
-		return ACTIVE_ALIENS.size();
+		return _activeAliens.size();
 	}
 
 }

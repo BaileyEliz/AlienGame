@@ -1,14 +1,13 @@
-package levels;
-
-import java.util.Random;
+package loop;
 
 import javafx.scene.Scene;
-import sprites.Shot;
-import sprites.Star;
-import sprites.StarManager;
 
 public class StarMode extends AlienMode {
 
+	public final int STAR_CREATION_RATE = 120;
+	public final int STAR_EXPLOSION_INDICATOR = 0;
+	public final int EXPLOSION_NUMBER = 5;
+	
 	private StarManager _starManager;
 	private int _starCounter;
 
@@ -32,44 +31,12 @@ public class StarMode extends AlienMode {
 
 	public void makeStars(){
 		
-		int[] randomNumbers = getInnerRandomXY();
+		int[] randomNumbers = getRandomXY(RANDOM_ONSCREEN);
 		
 		Star s = new Star(randomNumbers[0], randomNumbers[1]);
 
 		_starManager.addStar(s);
 		getRoot().getChildren().add(s.getImageView());
-	}
-	
-	public int[] getInnerRandomXY(){
-		
-		Random rand = new Random();
-
-		int smallX = rand.nextInt(180);
-		int smallY = rand.nextInt(180);
-		int bigX = (420 + rand.nextInt((int) getScene().getWidth() - 420));
-		int bigY = (420 + rand.nextInt((int) getScene().getWidth() - 420));
-		int bigOrSmallX = rand.nextInt(2);
-		int bigOrSmallY = rand.nextInt(2);
-
-		int randomNumberOne;
-		int randomNumberTwo;
-
-		if(bigOrSmallX == 0){
-			randomNumberOne = smallX;
-		}
-		else{
-			randomNumberOne = bigX;
-		}
-
-		if(bigOrSmallY == 0){
-			randomNumberTwo = smallY;
-		}
-		else{
-			randomNumberTwo = bigY;
-		}
-		
-		int[] randomNumbers = {randomNumberOne, randomNumberTwo};
-		return randomNumbers;
 	}
 
 	@Override
@@ -77,7 +44,7 @@ public class StarMode extends AlienMode {
 
 		super.updateShapes();
 		
-		if(_starCounter > 120){
+		if(_starCounter > STAR_CREATION_RATE){
 			_starCounter = 0;
 			makeStars();
 		}
@@ -111,8 +78,8 @@ public class StarMode extends AlienMode {
 
 	public void explode(double x, double y){
 
-		for(int i = 0; i < 5; i++){
-			Shot b = new Shot(x, y, i, getScene());
+		for(int i = 0; i < EXPLOSION_NUMBER; i++){
+			Shot b = new Shot(x, y, i, getScene(), STAR_EXPLOSION_INDICATOR);
 			getShotsManager().addShot(b);
 			System.out.println(i);
 			getRoot().getChildren().add(b.getImageView());
