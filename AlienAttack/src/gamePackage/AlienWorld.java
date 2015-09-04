@@ -1,10 +1,7 @@
 package gamePackage;
 
-import java.io.File;
-
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
 
 /*
@@ -18,11 +15,6 @@ public class AlienWorld extends Base {
     private Stage _primaryStage;
     private Level _activeLevel;
     private Scene _activeScene;
-
-    private AudioClip _audioClipRadioWaves = new AudioClip(new File(Constants.RADIO_WAVES).toURI().toString());
-    private AudioClip _audioClipJupiterWaves = new AudioClip(new File(Constants.JUPITER_WAVES).toURI().toString());
-    private AudioClip _audioClipSmallStep = new AudioClip(new File(Constants.SMALL_STEP).toURI().toString());
-    private AudioClip _audioClipHoustonProblem = new AudioClip(new File(Constants.HOUSTON_PROBLEM).toURI().toString());
 
     public AlienWorld(){
         super(Constants.FRAMES_PER_SECOND, Constants.GAME_TITLE);
@@ -67,7 +59,7 @@ public class AlienWorld extends Base {
                 showLost();
             }
         }
-        
+
         //to advance from a prior level, checks how many aliens have been 
         //removed from the board. Once the goal has been reached, the player moves on.
         else if(_activeLevel instanceof StarMode){
@@ -108,8 +100,6 @@ public class AlienWorld extends Base {
 
         _primaryStage.setScene(_activeScene);
 
-        _audioClipRadioWaves.play();
-
     }
 
     /*
@@ -119,9 +109,6 @@ public class AlienWorld extends Base {
     public void startAlienMode(KeyEvent e){
 
         if(e.getCode().getName().equals("Enter")){
-
-            _audioClipRadioWaves.stop();
-            _audioClipJupiterWaves.play();
 
             _activeLevel = new AlienMode();
             _activeScene = _activeLevel.initialize();
@@ -204,9 +191,6 @@ public class AlienWorld extends Base {
      */
     public void showEnd(){
 
-        _audioClipJupiterWaves.stop();
-        _audioClipSmallStep.play();
-
         _activeLevel = new Screen(Constants.END_SCREEN);
         _activeScene = _activeLevel.initialize();
 
@@ -221,10 +205,6 @@ public class AlienWorld extends Base {
      * the player has been defeated. Plays an audio message.
      */
     public void showLost(){
-
-        _audioClipRadioWaves.stop();
-        _audioClipJupiterWaves.stop();
-        _audioClipHoustonProblem.play();
 
         _activeLevel = new Screen(Constants.LOST_SCREEN);
         _activeScene = _activeLevel.initialize();
@@ -246,10 +226,6 @@ public class AlienWorld extends Base {
             System.exit(0);
         }
         else if(e.getCode().getName().equals("Enter")){
-
-            _audioClipSmallStep.stop();
-            _audioClipHoustonProblem.stop();
-            _audioClipJupiterWaves.play();
 
             _activeLevel = new AlienMode();
             _activeScene = _activeLevel.initialize();

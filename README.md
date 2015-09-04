@@ -81,7 +81,7 @@ Pressing the "S" key in each round causes the next spawned Aliens to move much s
 
 Shooting straight up or straight down causes the shot to travel much faster than other directions and can sometimes cause an Alien who was really hit to not register the impact.
 
-This isn't a bug, but I could not figure out how to use getClass() with the Audio Clip files. I kept getting a null pointer exception while if I pointed to the folder in the code where the resource is located I had not problems. All of my audio files are saved in the assets/Sounds folder, and assets should be a class folder included on the Build Path for the game. The same situation happened for my font, which is saved in assets/Fonts.
+This isn't a bug, but I could not figure out how to use getClass() with the Audio Clip files. I kept getting a null pointer exception while if I pointed to the folder in the code where the resource is located I had not problems. All of my audio files are saved in the assets/Sounds folder, and assets should be a class folder included on the Build Path for the game. The same situation happened for my font, which is saved in assets/Fonts. The commit before the final commit contains a version of audio and font that work on my computer, but to be safe I removed these features.
 
 ###Extra Features
 

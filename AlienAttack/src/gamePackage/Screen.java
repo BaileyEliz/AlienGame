@@ -1,8 +1,5 @@
 package gamePackage;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
@@ -11,7 +8,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
@@ -46,13 +42,6 @@ public class Screen extends Level {
         splashText.setText(_text);
         splashText.setTextAlignment(TextAlignment.CENTER);
         splashText.setFill(Color.GREENYELLOW);
-
-        try {
-            Font mFont = Font.loadFont(new FileInputStream(Constants.TYPEFACE_NAME), Constants.FONT_SIZE);
-            splashText.setFont(mFont);
-        } catch (IOException e1) {
-            e1.printStackTrace();
-        }
 
         flowPane.getChildren().add(splashText);
 

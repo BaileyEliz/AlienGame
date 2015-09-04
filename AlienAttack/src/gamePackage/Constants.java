@@ -16,20 +16,12 @@ public class Constants {
     public static final int FRAMES_PER_SECOND = 60;
     public static final int ALIEN_GOAL = 30;
 
-    public static final String RADIO_WAVES = "assets/Sounds/radioWaves.mp3";			//from http://www.mediacollege.com/downloads/sound-effects/space/
-    public static final String JUPITER_WAVES = "assets/Sounds/jupiterWaves.mp3";		//from http://www.mediacollege.com/downloads/sound-effects/space/
-    public static final String SMALL_STEP = "assets/Sounds/smallStep.mp3";				//from http://www.mediacollege.com/downloads/sound-effects/space/
-    public static final String HOUSTON_PROBLEM = "assets/Sounds/houstonProblem.mp3";	//from http://www.mediacollege.com/downloads/sound-effects/space/
-
     //Level
 
     public static final int SCREEN_WIDTH = 800;
     public static final int SCREEN_HEIGHT = 800;
 
     //Screen
-
-    public static final String TYPEFACE_NAME = "assets/Fonts/SpecialElite.ttf";
-    public static final int FONT_SIZE = 25;
 
     public static final String SPLASH_SCREEN = "Welcome to Alien Attack!\n\n"
             + "Earth is being attacked by a newly discovered\n"
