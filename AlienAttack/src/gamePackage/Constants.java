@@ -35,6 +35,8 @@ public class Constants {
             + "Be careful, the mothership is fast!\n\nPress the enter key to start.";
     public static final String END_SCREEN = "\nCongrats! You saved Earth!\n\nPress enter to play again or E to exit.";
 
+    public static final int DIVIDE_BY_TEN = 10;
+    
     //Mode
 
     public static final int MONITOR_HEIGHT = 30;
@@ -96,6 +98,12 @@ public class Constants {
     public static final int SHOT_RATE_UPPER_BOUND = 5000;
     public static final double SHOT_RATE_CONSTANT = 1.2;
     public static final int SHOT_RATE_LOWER_BOUND = 400;
+    
+    public static final int DIVIDE_BY_ZERO_CATCH = 10000;
+    
+    //Explosion
+    
+    public static final int EXPLOSION_RATE = 5000;
 
     //Alien
 
@@ -107,6 +115,8 @@ public class Constants {
     public static final int UPPER_SPEED_OFFSET = 3000;
 
     public static final int SCREEN_OFFSET = 300;
+    
+    public static final int SLOW_MO = 3;
 
     //Star
 

@@ -36,7 +36,7 @@ public class Screen extends Level {
         FlowPane flowPane = new FlowPane(Orientation.VERTICAL);
         flowPane.setPrefSize(Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
         flowPane.setAlignment(Pos.TOP_CENTER);
-        flowPane.setPadding(new Insets(Constants.SCREEN_HEIGHT/10));
+        flowPane.setPadding(new Insets(Constants.SCREEN_HEIGHT/Constants.DIVIDE_BY_TEN));
 
         Text splashText = new Text();
         splashText.setText(_text);

@@ -58,7 +58,8 @@ public abstract class Level {
      */
     public void explode(){
         for(int i = 0; i < Constants.NUMBER_OF_EXPLOSIONS_EARTH; i++){
-            Shot b = new Shot(_earth.getX(), _earth.getY(), i, getScene(), Constants.EARTH_EXPLOSION_INDICATOR);
+            //changed from Shot to Explosion
+            Shot b = new Explosion(_earth.getX(), _earth.getY(), i, getScene(), Constants.EARTH_EXPLOSION_INDICATOR);
             getShotManager().addShot(b);
             getRoot().getChildren().add(b.getImageView());
         }

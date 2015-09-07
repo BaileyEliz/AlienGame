@@ -82,7 +82,8 @@ public class StarMode extends AlienMode {
     public void explode(double x, double y){
 
         for(int i = 0; i < Constants.NUMBER_OF_EXPLOSIONS_STAR; i++){
-            Shot b = new Shot(x, y, i, getScene(), Constants.STAR_EXPLOSION_INDICATOR);
+            //changed from Shot to Explosion
+            Shot b = new Explosion(x, y, i, getScene(), Constants.STAR_EXPLOSION_INDICATOR);
             getShotManager().addShot(b);
             System.out.println(i);
             getRoot().getChildren().add(b.getImageView());

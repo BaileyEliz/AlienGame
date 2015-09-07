@@ -58,7 +58,7 @@ public class Alien extends Sprite{
         
         Random rand = new Random();
         if(isSlowMo){
-            return ((Constants.LOWER_SPEED_BOUND + rand.nextInt(Constants.UPPER_SPEED_OFFSET)) * 3);
+            return ((Constants.LOWER_SPEED_BOUND + rand.nextInt(Constants.UPPER_SPEED_OFFSET)) * Constants.SLOW_MO);
         }
         else{
             return ((Constants.LOWER_SPEED_BOUND + rand.nextInt(Constants.UPPER_SPEED_OFFSET)));
